@@ -6,7 +6,11 @@ const Topbar = () => {
   return (
     <div className="top">
       <div className="topLeft">
-        <h2 className="logo-title">Xəzər info</h2>
+        <h2 className="logo-title">
+          <Link className="link" to="/">
+            Xəzər info
+          </Link>
+        </h2>
         <i className="topIcon fab fa-facebook-square"></i>
         <i className="topIcon fab fa-instagram-square"></i>
         <i className="topIcon fab fa-pinterest-square"></i>
@@ -56,7 +60,6 @@ const Topbar = () => {
       </div>
     </div>
   );
-}
+};
 
-
-export default Topbar
+export default Topbar;

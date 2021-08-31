@@ -4,7 +4,10 @@
 @import "./css/components/header.css";
 @import "./css/components/post.css";
 @import "./css/components/posts.css";
+@import "./css/components/singlepost.css";
 
 /* Pages */
 @import "./css/pages/homepage.css";
-@import "./css/pages//registerpage.css";
+@import "./css/pages/registerpage.css";
+@import "./css/pages/loginpage.css";
+@import "./css/pages/single.css";
