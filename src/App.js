@@ -1,8 +1,17 @@
 import './App.css';
-
+import {Topbar} from './components'
+import {Homepage} from './pages'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const App = () => {
   return (
-    <h1>Xezer info</h1>
+    <Router>
+      <Topbar/>
+      <Switch>
+      <Route exact path="/">
+          <Homepage />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

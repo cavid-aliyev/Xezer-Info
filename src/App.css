@@ -1,0 +1,9 @@
+/* Komponents */
+@import "./css/components/topbar.css";
+@import "./css/components/sidebar.css";
+@import "./css/components/header.css";
+@import "./css/components/post.css";
+@import "./css/components/posts.css";
+
+/* Pages */
+@import "./css/pages/homepage.css";
