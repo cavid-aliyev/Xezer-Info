@@ -26,8 +26,8 @@ const Topbar = () => {
           <li className="topListItem">Haqqımızda</li>
           <li className="topListItem">Əlaqə</li>
           <li className="topListItem">
-            <Link className="link" to="/write">
-              Yaz
+            <Link className="link" to="/create">
+              Post yarat
             </Link>
           </li>
           {user && <li className="topListItem">Çıxış</li>}
