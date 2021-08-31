@@ -1,9 +1,16 @@
 import "./App.css";
 import { Topbar } from "./components";
-import { Homepage, Registerpage, Loginpage, Single } from "./pages";
+import {
+  Homepage,
+  Registerpage,
+  Loginpage,
+  Single,
+  Createpage,
+  Settingspage,
+} from "./pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const App = () => {
-  const currentUser = false;
+  const currentUser = true;
   return (
     <Router>
       <Topbar />
@@ -22,6 +29,12 @@ const App = () => {
         </Route>
         <Route path="/post/:id">
           <Single />
+        </Route>
+        <Route path="/create">
+          {currentUser ? <Createpage /> : <Loginpage />}
+        </Route>
+        <Route path="/settings">
+          {currentUser ? <Settingspage /> : <Loginpage />}
         </Route>
       </Switch>
     </Router>
