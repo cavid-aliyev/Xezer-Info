@@ -24,8 +24,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-module.exports = router;
-
 //!LOGIN
 router.post("/login", async (req, res) => {
   try {
@@ -34,8 +32,8 @@ router.post("/login", async (req, res) => {
     !user && res.status(400).json("Wrong credentials!");
 
     //compare pass
-    const validate = await bcrypt.compare(req.body.password, user.password);
-    !validate && res.status(400).json("Passwords are not compared!");
+    const validated = await bcrypt.compare(req.body.password, user.password);
+    !validated && res.status(400).json("Wrong credentials!");
 
     const { password, ...others } = user._doc;
 
@@ -44,3 +42,6 @@ router.post("/login", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+module.exports = router;
