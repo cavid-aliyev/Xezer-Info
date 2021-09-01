@@ -6,15 +6,17 @@ import axios from "axios";
 const Homepage = () => {
   const [posts, setPosts] = React.useState([]);
 
-  //getting posts from api
-  const fetchPosts = async () => {
-    const response = await axios.get("/posts");
-    setPosts(response.data)
-  };
+  //using query in axios
+  const { search } = useLocation();
 
+  //getting posts from api
   React.useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await axios.get("/posts" + search);
+      setPosts(response.data);
+    };
     fetchPosts();
-  }, []);
+  }, [search]);
 
   const location = useLocation();
   console.log(location);
@@ -22,7 +24,7 @@ const Homepage = () => {
     <>
       <Header />
       <div className="home">
-        <Posts posts={posts}/>
+        <Posts posts={posts} />
         <Sidebar />
       </div>
     </>
