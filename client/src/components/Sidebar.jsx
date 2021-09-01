@@ -1,61 +1,48 @@
 import { Link } from "react-router-dom";
+import axios from "axios";
+import React from "react";
 
 const Sidebar = () => {
+  const [cats, setCats] = React.useState([]);
+
+  React.useEffect(() => {
+    const getCats = async () => {
+      const res = await axios.get("/categories");
+      setCats(res.data);
+    };
+    getCats();
+  }, []);
+
   return (
     <div className="sidebar">
       <div className="sidebarItem">
         <span className="sidebarTitle">Haqqımda</span>
         <img
-          src="https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandblog/demo/wp-content/uploads/2015/11/aboutme.jpg"
+          src="https://i.pinimg.com/236x/1e/3f/58/1e3f587572a7a7b20bbf1828595a1786--holiday-party-themes-holiday-gift-guide.jpg"
           alt=""
         />
         <p>
-          Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit
-          amet ex esse.Sunt eu ut nostrud id quis proident.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate qui
+          necessitatibus nostrum illum reprehenderit.
         </p>
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">Kateqoriyalar</span>
         <ul className="sidebarList">
-          <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Life">
-              Həyat
+          {cats.map((category) => (
+            <Link to={`/?cat=${category.name}`} className="link">
+              <li className="sidebarListItem">{category.name}</li>
             </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Music">
-              Musiqi
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Sport">
-              İdman
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Style">
-              Dəb
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Tech">
-              Texnalogiya
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Cinema">
-              Kino
-            </Link>
-          </li>
+          ))}
         </ul>
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">Bizi izləyin</span>
         <div className="sidebarSocial">
           <i className="sidebarIcon fab fa-facebook-square"></i>
-          <i className="sidebarIcon fab fa-instagram-square"></i>
-          <i className="sidebarIcon fab fa-pinterest-square"></i>
           <i className="sidebarIcon fab fa-twitter-square"></i>
+          <i className="sidebarIcon fab fa-pinterest-square"></i>
+          <i className="sidebarIcon fab fa-instagram-square"></i>
         </div>
       </div>
     </div>

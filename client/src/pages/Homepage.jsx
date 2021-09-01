@@ -1,19 +1,32 @@
-import React from 'react'
+import React from "react";
 import { useLocation } from "react-router";
-import {Sidebar, Header, Posts} from '../components'
+import { Sidebar, Header, Posts } from "../components";
+import axios from "axios";
 
 const Homepage = () => {
-    const location = useLocation();
-    console.log(location);
-    return (
-        <>
-        <Header />
-        <div className="home">
-          <Posts />
-          <Sidebar />
-        </div>
-      </>
-    )
-}
+  const [posts, setPosts] = React.useState([]);
 
-export default Homepage
+  //getting posts from api
+  const fetchPosts = async () => {
+    const response = await axios.get("/posts");
+    setPosts(response.data)
+  };
+
+  React.useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const location = useLocation();
+  console.log(location);
+  return (
+    <>
+      <Header />
+      <div className="home">
+        <Posts posts={posts}/>
+        <Sidebar />
+      </div>
+    </>
+  );
+};
+
+export default Homepage;
