@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
+const path = require("path");
 const multer = require("multer");
 
 //router details
@@ -17,6 +18,7 @@ app.use("/api/categories", categoryRoute);
 
 doteenv.config();
 const PORT = 5000;
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -40,8 +42,6 @@ const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Backend is running in on ${PORT} port`);
