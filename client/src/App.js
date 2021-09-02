@@ -9,8 +9,11 @@ import {
   Settingspage,
 } from "./pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Context } from "./context/Context";
+import React from "react";
+
 const App = () => {
-  const currentUser = true;
+  const { user } = React.useContext(Context);
   return (
     <Router>
       <Topbar />
@@ -21,20 +24,14 @@ const App = () => {
         <Route path="/posts">
           <Homepage />
         </Route>
-        <Route path="/register">
-          {currentUser ? <Homepage /> : <Registerpage />}
-        </Route>
-        <Route path="/login">
-          {currentUser ? <Homepage /> : <Loginpage />}
-        </Route>
+        <Route path="/register">{user ? <Homepage /> : <Registerpage />}</Route>
+        <Route path="/login">{user ? <Homepage /> : <Loginpage />}</Route>
         <Route path="/post/:id">
           <Single />
         </Route>
-        <Route path="/create">
-          {currentUser ? <Createpage /> : <Loginpage />}
-        </Route>
+        <Route path="/create">{user ? <Createpage /> : <Loginpage />}</Route>
         <Route path="/settings">
-          {currentUser ? <Settingspage /> : <Loginpage />}
+          {user ? <Settingspage /> : <Loginpage />}
         </Route>
       </Switch>
     </Router>
